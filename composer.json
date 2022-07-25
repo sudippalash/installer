@@ -1,0 +1,35 @@
+{
+    "name": "sudippalash/installer",
+    "description": "Laravel package for Project install GUI",
+    "keywords": [
+        "Sudip",
+        "sudippalash",
+        "Laravel Project install GUI",
+        "Project install GUI",
+        "Laravel"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sudip Palash",
+            "email": "palash.sudip@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+          "Sudip\\Installer\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sudip\\Installer\\Providers\\AppServiceProvider",
+                "Sudip\\Installer\\Providers\\RouteServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
