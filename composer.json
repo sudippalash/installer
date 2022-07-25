@@ -1,11 +1,11 @@
 {
     "name": "sudippalash/installer",
-    "description": "Laravel package for Project install GUI",
+    "description": "Laravel package for Project installation",
     "keywords": [
         "Sudip",
         "sudippalash",
-        "Laravel Project install GUI",
-        "Project install GUI",
+        "Laravel Project installation",
+        "Project installation",
         "Laravel"
     ],
     "type": "library",
