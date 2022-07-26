@@ -100,7 +100,7 @@
         <div class="row vh-95 justify-content-center">
             <div class="col-sm-8 my-auto">
                 <div class="card">
-                    @stack('title')
+                    @yield('title')
                     
                     <div class="card-body">
                         @if($errors->has('error'))
