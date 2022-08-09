@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__ . '/../views', 'installerview');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'installerview');
 
         view()->composer(['installerview::components.title'], function($q) {
             $q->with('steps', Steps::get());
