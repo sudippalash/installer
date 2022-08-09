@@ -1,8 +1,8 @@
 @extends('installerview::layouts.app')
 
-@push('title')
+@section('title')
     @component('installerview::components.title', ['step' => 5]) @endcomponent
-@endpush
+@endsection
 
 @section('content')
 <form method="POST" action="{{ route('installer.project-setup') }}">

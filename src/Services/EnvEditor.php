@@ -51,7 +51,7 @@ class EnvEditor
 
     public static function addQuoteFields()
     {
-        return ['APP_NAME', 'APP_URL', 'DB_DATABASE', 'DB_USERNAME', 'DB_PASSWORD', 'MAIL_PASSWORD', 'MAIL_FROM_ADDRESS', 'MAIL_FROM_NAME'];
+        return ['APP_NAME', 'APP_URL', 'DB_PASSWORD', 'MAIL_PASSWORD', 'MAIL_FROM_ADDRESS', 'MAIL_FROM_NAME'];
     }
 
     public static function changeEnv($data = array())

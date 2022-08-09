@@ -1,8 +1,8 @@
 @extends('installerview::layouts.app')
 
-@push('title')
+@section('title')
     @component('installerview::components.title', ['step' => 6]) @endcomponent
-@endpush
+@endsection
 
 @section('content')
 <div class="text-center m-5">
