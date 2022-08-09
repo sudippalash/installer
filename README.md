@@ -1,4 +1,6 @@
-## installer comes to Laravel
+## installer
+
+![alt text](https://github.com/sudippalash/installer/blob/master/img.jpg?raw=true)
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
@@ -87,6 +89,14 @@ This is the contents of the published config file `config/installer.php`:
             'MAIL_FROM_NAME' => 'Laravel',
         ],
     ];
+```
+
+## Usage
+
+Type on your browser URL address bar:
+
+```bash
+{your_project_url}/install
 ```
 
 ## License
