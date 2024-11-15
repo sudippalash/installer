@@ -10,27 +10,27 @@ class EnvEditor
 
         $string = file_get_contents($file);
         $string = preg_split('/\n+/', $string);
-        $returnArray = array();
+        $returnArray = [];
 
         foreach ($string as $one) {
             if (preg_match('/^(#\s)/', $one) === 1 || preg_match('/^([\\n\\r]+)/', $one)) {
                 continue;
             }
 
-            $entry = explode("=", $one, 2);
+            $entry = explode('=', $one, 2);
             $returnArray[$entry[0]] = isset($entry[1]) ? $entry[1] : null;
         }
 
         return array_filter(
             $returnArray,
             function ($key) {
-                return !empty($key);
+                return ! empty($key);
             },
             ARRAY_FILTER_USE_KEY
         );
     }
 
-    public static function getInputValue($data = array())
+    public static function getInputValue($data = [])
     {
         $envConfig = config('installer.env');
         $envData = self::envToArray();
@@ -54,7 +54,7 @@ class EnvEditor
         return ['APP_NAME', 'APP_URL', 'DB_PASSWORD', 'MAIL_PASSWORD', 'MAIL_FROM_ADDRESS', 'MAIL_FROM_NAME'];
     }
 
-    public static function changeEnv($data = array())
+    public static function changeEnv($data = [])
     {
         if (count($data) > 0) {
             $file = base_path('.env');
@@ -63,9 +63,9 @@ class EnvEditor
                 $envKey = current(explode('=', $val, 2));
                 if (array_key_exists($envKey, $data)) {
                     if (in_array($envKey, self::addQuoteFields())) {
-                        $envArray[$key] = $envKey . '="' . $data[$envKey] . '"' . "\n";
+                        $envArray[$key] = $envKey.'="'.$data[$envKey].'"'."\n";
                     } else {
-                        $envArray[$key] = $envKey . "=" . $data[$envKey] . "\n";
+                        $envArray[$key] = $envKey.'='.$data[$envKey]."\n";
                     }
                 }
             }
@@ -79,4 +79,3 @@ class EnvEditor
         return false;
     }
 }
-

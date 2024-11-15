@@ -7,7 +7,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | PHP required a version for your system and required extensions that user needs to enable or install on the server.
-    | 
+    |
     */
 
     'php' => [
@@ -21,7 +21,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Users need to assign minimum permission for these project folders.
-    | 
+    |
     */
     'directories_permissions' => [
         'bootstrap/cache' => '775',
@@ -29,14 +29,14 @@ return [
         'storage/framework' => '775',
         'storage/logs' => '775',
     ],
-    
+
     /*
     |--------------------------------------------------------------------------
     | env
     |--------------------------------------------------------------------------
     |
     | Set your default .env value. The form will show those data then the user can change it.
-    | 
+    |
     */
     'env' => [
         'APP_NAME' => 'Laravel',

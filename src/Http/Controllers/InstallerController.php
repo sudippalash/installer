@@ -2,30 +2,30 @@
 
 namespace Sudip\Installer\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Sudip\Installer\Traits\Utility;
 use App\Http\Controllers\Controller;
-use Sudip\Installer\Services\EnvEditor;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
+use Sudip\Installer\Services\EnvEditor;
+use Sudip\Installer\Traits\Utility;
 
 class InstallerController extends Controller
 {
     use Utility;
-    
+
     public function index()
     {
         return view('installerview::index');
     }
-    
+
     public function requirements()
     {
         $version = $this->versionCheck();
         $extensions = $this->extensionCheck();
-        
+
         return view('installerview::server-requirements', compact('version', 'extensions'));
     }
-    
+
     public function permissions()
     {
         $version = $this->versionCheck();
@@ -36,21 +36,22 @@ class InstallerController extends Controller
 
         $permissions = $this->permissionCheck();
         $grantPermission = $this->grantPermission();
-        
+
         return view('installerview::file-permissions', compact('permissions', 'grantPermission'));
     }
-    
+
     public function database()
     {
         $grantPermission = $this->grantPermission();
         if ($grantPermission != 1) {
             return redirect()->action([self::class, 'permissions']);
         }
-        
+
         $envConfig = EnvEditor::getInputValue(['DB_HOST', 'DB_PORT', 'DB_DATABASE', 'DB_USERNAME', 'DB_PASSWORD']);
+
         return view('installerview::database-setup', compact('envConfig'));
     }
-    
+
     public function databaseSetup(Request $request)
     {
         $this->validate($request, [
@@ -58,7 +59,7 @@ class InstallerController extends Controller
             'database_port' => 'required|min:2',
             'database_name' => 'required|min:2',
             'database_username' => 'required|min:3',
-            'database_password' => 'nullable|min:4'
+            'database_password' => 'nullable|min:4',
         ]);
 
         $envData = [
@@ -74,7 +75,7 @@ class InstallerController extends Controller
             try {
                 DB::connection()->getPdo();
             } catch (\Exception $e) {
-                return redirect()->action([self::class, 'database'])->withErrors(['error' => 'Could not connect to the database. Please check your configuration. error:' . $e->getMessage()]);
+                return redirect()->action([self::class, 'database'])->withErrors(['error' => 'Could not connect to the database. Please check your configuration. error:'.$e->getMessage()]);
             }
 
             if (isset($request->migrate)) {
@@ -86,7 +87,7 @@ class InstallerController extends Controller
             return redirect()->action([self::class, 'database'])->withErrors(['error' => 'Failed to set Database credentials']);
         }
     }
-    
+
     public function project()
     {
         $grantPermission = $this->grantPermission();
@@ -95,9 +96,10 @@ class InstallerController extends Controller
         }
 
         $envConfig = EnvEditor::getInputValue(['APP_NAME', 'APP_URL', 'LOG_CHANNEL', 'FILESYSTEM_DRIVER', 'MAIL_MAILER', 'MAIL_HOST', 'MAIL_PORT', 'MAIL_USERNAME', 'MAIL_PASSWORD', 'MAIL_ENCRYPTION', 'MAIL_FROM_ADDRESS', 'MAIL_FROM_NAME']);
+
         return view('installerview::project-setup', compact('envConfig'));
     }
-    
+
     public function projectSetup(Request $request)
     {
         $envConfig = config('installer.env');
@@ -114,7 +116,7 @@ class InstallerController extends Controller
             return redirect()->action([self::class, 'project'])->withErrors(['error' => 'Failed to update .env file']);
         }
     }
-    
+
     public function complete()
     {
         return view('installerview::complete-setup');

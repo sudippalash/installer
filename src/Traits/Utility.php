@@ -14,7 +14,7 @@ trait Utility
             'versionCompatibility' => $versionCompatibility,
         ];
     }
-    
+
     public function extensionCheck()
     {
         $extensions = [];
@@ -25,13 +25,13 @@ trait Utility
 
         return $extensions;
     }
-    
+
     public function permissionCheck()
     {
         $extensions = [];
         $direcotries = config('installer.directories_permissions');
         foreach ($direcotries as $key => $directory) {
-            $oct = sprintf("%04d", $directory);
+            $oct = sprintf('%04d', $directory);
             $permission = substr(sprintf('%o', fileperms(base_path().'/'.$key)), -4);
             $extensions[$key] = ['required' => $oct, 'permission' => $permission, 'value' => (octdec($permission) >= octdec($oct) ? 1 : 0)];
         }
@@ -48,6 +48,7 @@ trait Utility
                 $grantPermission = 0;
             }
         }
+
         return $grantPermission;
-    }    
+    }
 }
