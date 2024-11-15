@@ -17,13 +17,13 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Direcotries Permissions
+    | Directories Permissions
     |--------------------------------------------------------------------------
     |
     | Users need to assign minimum permission for these project folders.
     | 
     */
-    'direcotries_permissions' => [
+    'directories_permissions' => [
         'bootstrap/cache' => '775',
         'storage/app' => '775',
         'storage/framework' => '775',

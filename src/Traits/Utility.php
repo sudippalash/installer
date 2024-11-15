@@ -29,7 +29,7 @@ trait Utility
     public function permissionCheck()
     {
         $extensions = [];
-        $direcotries = config('installer.direcotries_permissions');
+        $direcotries = config('installer.directories_permissions');
         foreach ($direcotries as $key => $directory) {
             $oct = sprintf("%04d", $directory);
             $permission = substr(sprintf('%o', fileperms(base_path().'/'.$key)), -4);
